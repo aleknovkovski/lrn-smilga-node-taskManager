@@ -1,9 +1,8 @@
 const express = require('express')
 const app = express()
+const tasks = require('./routes/tasks')
 
-app.get('/hello', (req, res)=> {
-    res.send("Helooo there")
-})
+app.use('/api/v1/', tasks)
 app.listen(5000,()=>{
     console.log("Server is listening on port 5000")
 })
