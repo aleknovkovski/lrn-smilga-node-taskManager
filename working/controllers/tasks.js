@@ -7,7 +7,7 @@ function createTask(req, res) {
 }
 
 function getTask(req, res) {
-    res.send("Get task")
+    res.json({message: "Get task", request: req.params.id})
 }
 
 function updateTask(req, res) {
