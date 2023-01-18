@@ -3,7 +3,7 @@ function getAllTasks(req, res) {
 }
 
 function createTask(req, res) {
-    res.send("Create task")
+    res.json({message: "Create task", request: req.body})
 }
 
 function getTask(req, res) {
