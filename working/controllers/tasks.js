@@ -19,8 +19,15 @@ async function createTask(req, res) {
     }
 }
 
-function getTask(req, res) {
-    res.json({message: "Get task", request: req.params.id})
+async function getTask(req, res) {
+    const {id:taskId} = req.params
+    try{
+        const task = await Task.findOne({_id: taskId})
+        res.json({message: "Get task", task: task})
+    }
+    catch(err){
+        res.status(500).json({"message": err})
+    }
 }
 
 function updateTask(req, res) {
