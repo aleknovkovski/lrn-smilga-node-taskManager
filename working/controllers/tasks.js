@@ -23,6 +23,7 @@ async function getTask(req, res) {
     const {id:taskId} = req.params
     try{
         const task = await Task.findOne({_id: taskId})
+        if (!task) {return res.status(404).json({message: "Task not found"})}
         res.json({message: "Get task", task: task})
     }
     catch(err){
