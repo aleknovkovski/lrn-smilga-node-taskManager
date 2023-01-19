@@ -5,8 +5,13 @@ function getAllTasks(req, res) {
 }
 
 async function createTask(req, res) {
-    const task = await Task.create(req.body)
-    res.json({message: "Create task", request: task})
+    try {
+        const task = await Task.create(req.body)
+        res.json({message: "Create task", request: task})
+    }
+    catch (err) {
+        res.status(500).json({"message": err})
+    }
 }
 
 function getTask(req, res) {
