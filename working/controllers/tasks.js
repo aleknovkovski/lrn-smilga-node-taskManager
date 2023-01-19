@@ -8,8 +8,7 @@ async function createTask(req, res) {
     try {
         const task = await Task.create(req.body)
         res.json({message: "Create task", request: task})
-    }
-    catch (err) {
+    } catch (err) {
         res.status(500).json({"message": err})
     }
 }
@@ -25,6 +24,7 @@ function updateTask(req, res) {
 function deleteTask(req, res) {
     res.send("Delete task")
 }
+
 module.exports = {
     getAllTasks,
     createTask,
