@@ -27,10 +27,13 @@ const updateTask = asyncWrapper(async function (req, res) {
     res.json({message: "Update task", task: task})
 })
 
-const deleteTask = asyncWrapper(async function (req, res) {
+const deleteTask = asyncWrapper(async function (req, res, next) {
     const {id:taskId} = req.params
     const task = await Task.findOneAndDelete({_id: taskId})
-    if (!task) {return res.status(404).json({message: "Task not found"})}
+    if (!task) {
+        const error = new Error('Not Found'); error.status = 404;
+        return next(error);
+    }
     res.json({message: "Delete task", task: task})
 })
 
